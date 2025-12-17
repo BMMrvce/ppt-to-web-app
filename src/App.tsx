@@ -12,6 +12,9 @@ import Quiz from "./pages/Quiz";
 import Contribute from "./pages/Contribute";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
+import Monuments from "./pages/Monuments";
+import Stories from "./pages/Stories";
+import Quizzes from "./pages/Quizzes";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +27,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/monuments" element={<Monuments />} />
+          <Route path="/stories" element={<Stories />} />
+          <Route path="/quizzes" element={<Quizzes />} />
           <Route path="/ar" element={<ARViewer />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/favorites" element={<Favorites />} />

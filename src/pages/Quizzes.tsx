@@ -1,17 +1,17 @@
 import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
-import { Features } from "@/components/Features";
 import { Footer } from "@/components/Footer";
+import { GameSection } from "@/components/GameSection";
 
-const Index = () => {
+const Quizzes = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <Hero />
-      <Features />
+      <main className="pt-16">
+        <GameSection />
+      </main>
       <Footer />
     </div>
   );
 };
 
-export default Index;
+export default Quizzes;
