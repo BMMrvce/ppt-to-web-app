@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { BackToHome } from "@/components/BackToHome";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -236,6 +237,7 @@ export default function Admin() {
     <div className="min-h-screen">
       <Navbar />
       <main className="container mx-auto px-4 py-24">
+        <BackToHome className="mb-6" />
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <Shield className="w-10 h-10 text-heritage-terracotta" />

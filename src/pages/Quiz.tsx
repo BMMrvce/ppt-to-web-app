@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { BackToHome } from "@/components/BackToHome";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useViewTracking } from "@/hooks/useViewTracking";
-import { Loader2, Trophy, ArrowLeft } from "lucide-react";
+import { Loader2, Trophy, ArrowLeft, Home } from "lucide-react";
 
 interface Question {
   question: string;
@@ -125,12 +126,16 @@ export default function Quiz() {
                 {percentage >= 80 ? "Excellent!" : percentage >= 60 ? "Good job!" : "Keep learning!"}
               </p>
             </div>
-            <div className="flex gap-4 justify-center">
+            <div className="flex gap-4 justify-center flex-wrap">
               <Button onClick={() => window.location.reload()}>
                 Retake Quiz
               </Button>
               <Button variant="outline" onClick={() => navigate(-1)}>
                 Back to Monument
+              </Button>
+              <Button variant="secondary" onClick={() => navigate("/")}>
+                <Home className="mr-2 h-4 w-4" />
+                Home
               </Button>
             </div>
           </Card>
@@ -147,14 +152,16 @@ export default function Quiz() {
     <div className="min-h-screen">
       <Navbar />
       <main className="container mx-auto px-4 py-24">
-        <Button
-          variant="ghost"
-          onClick={() => navigate(-1)}
-          className="mb-4"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back
-        </Button>
+        <div className="flex gap-4 mb-4">
+          <Button
+            variant="ghost"
+            onClick={() => navigate(-1)}
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back
+          </Button>
+          <BackToHome />
+        </div>
 
         <Card className="max-w-3xl mx-auto p-8 space-y-6">
           <div className="space-y-2">
