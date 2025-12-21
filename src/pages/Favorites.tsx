@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MonumentCard } from "@/components/MonumentCard";
+import { BackToHome } from "@/components/BackToHome";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -88,6 +89,7 @@ export default function Favorites() {
       <Navbar />
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">
+          <BackToHome className="mb-6" />
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Heart className="w-10 h-10 fill-heritage-terracotta text-heritage-terracotta" />

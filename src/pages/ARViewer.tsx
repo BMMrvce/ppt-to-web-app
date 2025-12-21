@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Loader2, Camera, Box, RotateCcw } from "lucide-react";
+import { ArrowLeft, Loader2, Camera, Box, RotateCcw, Home } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 interface Monument {
@@ -348,14 +348,22 @@ const ARViewer = () => {
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 z-50 p-4 bg-gradient-to-b from-background to-transparent">
         <div className="flex items-center justify-between">
-          <Button
-            variant="ghost"
-            onClick={() => navigate(-1)}
-            className="text-foreground hover:bg-muted"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Exit
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="ghost"
+              onClick={() => navigate(-1)}
+              className="text-foreground hover:bg-muted"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Exit
+            </Button>
+            <Link to="/">
+              <Button variant="outline" size="sm" className="text-foreground">
+                <Home className="w-4 h-4 mr-2" />
+                Home
+              </Button>
+            </Link>
+          </div>
           <h1 className="text-foreground text-lg font-bold">{currentMonument.title}</h1>
           <div className="w-20" />
         </div>

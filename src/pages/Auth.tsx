@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { z } from "zod";
+import { BackToHome } from "@/components/BackToHome";
 
 const authSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -121,7 +122,10 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-heritage-earth/5 to-background p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-background via-heritage-earth/5 to-background p-4">
+      <div className="w-full max-w-md mb-4">
+        <BackToHome />
+      </div>
       <Card className="w-full max-w-md p-8 shadow-monument">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">

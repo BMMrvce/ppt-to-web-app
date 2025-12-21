@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { BackToHome } from "@/components/BackToHome";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -186,6 +187,7 @@ export default function Profile() {
       <Navbar />
       <main className="container mx-auto px-4 py-24">
         <div className="max-w-2xl mx-auto">
+          <BackToHome className="mb-6" />
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <User className="w-10 h-10 text-heritage-terracotta" />
