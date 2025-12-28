@@ -1,0 +1,27 @@
+-- Replace this with an existing auth.users.id
+\set demo_user '00000000-0000-0000-0000-000000000000'
+
+-- Create 5 demo monuments
+WITH m AS (
+  INSERT INTO public.monuments (title, location, era, image_url, description, is_published)
+  VALUES
+    ('Hampi Ruins', 'Hampi, Karnataka', '14th Century', 'https://images.example.com/hampi.jpg', 'Capital of Vijayanagara Empire, famed for stone chariots and temples.', true),
+    ('Chittorgarh Fort', 'Chittorgarh, Rajasthan', '7th Century', 'https://images.example.com/chittor.jpg', 'One of India''s largest forts, symbol of Rajput valor.', true),
+    ('Konark Sun Temple', 'Konark, Odisha', '13th Century', 'https://images.example.com/konark.jpg', 'UNESCO World Heritage temple shaped like a chariot of the sun god.', true),
+    ('Golconda Fort', 'Hyderabad, Telangana', '16th Century', 'https://images.example.com/golconda.jpg', 'Fortress famous for acoustics and as a diamond trade hub.', true),
+    ('Mahabalipuram Shore Temple', 'Mahabalipuram, Tamil Nadu', '8th Century', 'https://images.example.com/shore.jpg', 'Pallava-era shore temple overlooking the Bay of Bengal.', true)
+  RETURNING id, title
+)
+-- Insert 5 approved stories linked to those monuments
+INSERT INTO public.stories (monument_id, user_id, title, content, author_name, status)
+SELECT m.id, :'demo_user', s.title, s.content, s.author_name, 'approved'
+FROM m
+JOIN (
+  VALUES
+    ('Hampi Ruins', 'Legend of Vijayanagara', 'According to local lore, a hare chased a hound here—seen as a divine sign that led to founding the Vijayanagara Empire.', 'Arjun'),
+    ('Chittorgarh Fort', 'Tale of Rani Padmini', 'A story of courage and sacrifice during the siege of Alauddin Khilji, inspiring generations.', 'Meera'),
+    ('Konark Sun Temple', 'Wheels of Time', 'Artisans carved 24 wheels as cosmic calendars; villagers say they glow at dawn on solstice mornings.', 'Sanjay'),
+    ('Golconda Fort', 'The Whispering Walls', 'Guards could hear claps at the Fateh Darwaza from atop the Bala Hissar, a marvel of acoustic design.', 'Farah'),
+    ('Mahabalipuram Shore Temple', 'Stones by the Sea', 'Fisherfolk recount that the sea once revealed six hidden pagodas during a great storm.', 'Kavya')
+) AS s(mon_title, title, content, author_name)
+  ON s.mon_title = m.title;
